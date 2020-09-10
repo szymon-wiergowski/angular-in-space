@@ -1,0 +1,52 @@
+* {
+  font-family: Arial, serif;
+}
+
+.header {
+  text-align: center;
+}
+
+.header a {
+  padding: 0 4px;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+img.thumbnail {
+  max-width: 100px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  background-color: grey;
+  line-height: 2;
+}
+
+tbody a {
+  padding: 0 4px;
+}
+
+tbody tr:last-of-type td {
+  padding-bottom: 20px;
+}
+
+tbody tr:first-of-type td {
+  padding-top: 20px;
+}
+
+tbody:nth-child(even) tr {
+  background-color: lightgray;
+}
