@@ -11,6 +11,6 @@ export interface Launch {
     videoLink: string;
     presskitLink: string;
     articleLink: string;
-    wikipediaLink: string
-  }
+    wikipediaLink: string;
+  };
 }
