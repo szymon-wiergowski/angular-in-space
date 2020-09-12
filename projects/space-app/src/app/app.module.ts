@@ -1,8 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { API_URL } from 'space-api/tokens';
 import { environment } from '../environments/environment';
-import { API_URL } from './api-url';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

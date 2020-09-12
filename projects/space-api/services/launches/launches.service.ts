@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Launch } from '@shared/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { API_URL } from '../../../../api-url';
-import { LaunchDetailsUpdate } from '../../types/launch-details-update';
-import { LaunchesQueryParams } from '../../types/launches-query-params';
+import { API_URL } from '../../tokens';
+import { Launch, LaunchDetailsUpdate, LaunchesQueryParams } from '../../types';
 
 @Injectable({
   providedIn: 'root'

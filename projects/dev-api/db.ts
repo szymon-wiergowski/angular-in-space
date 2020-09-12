@@ -1,4 +1,4 @@
-import { mockedLaunches } from '../shared/mocks';
+import { mockedLaunches } from '../space-api/mocks';
 
 export const db = {
   launches: mockedLaunches

@@ -1,4 +1,4 @@
-import { mockedLaunches } from '../shared/mocks';
+import { mockedLaunches } from '../space-api/mocks';
 import { CustomRoute } from './custom-route';
 
 export const routes: CustomRoute[] = [

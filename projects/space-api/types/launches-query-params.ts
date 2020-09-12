@@ -1,4 +1,4 @@
-import { Launch } from '@shared/types';
+import { Launch } from './launch';
 
 export interface LaunchesQueryParams {
   sort: keyof Launch;

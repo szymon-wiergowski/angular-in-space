@@ -17,8 +17,7 @@
       "dom"
     ],
     "paths": {
-      "@shared/mocks": ["./projects/shared/mocks"],
-      "@shared/types": ["./projects/shared/types"]
+      "space-api/*": ["./projects/space-api/*"]
     }
   }
 }
