@@ -1,18 +1,16 @@
 <h2>Wprowadzanie laboratorium</h2>
 
 <div>
-  <button type="button" routerLink="../details" routerLinkActive="active">Szczegóły</button>
-  <button type="button" routerLink="../members" routerLinkActive="active">Zespół badawczy</button>
-  <button type="button" routerLink="../equipment" routerLinkActive="active">Wyposażenie</button>
+  <button type="button" routerLink="." [queryParams]="{step: 'details'}" routerLinkActive="active">Szczegóły</button>
+  <button type="button" routerLink="." [queryParams]="{step: 'equipments'}" routerLinkActive="active">Wyposażenie</button>
 </div>
 
-<ng-container [ngSwitch]="step | async">
-  <app-lab-members-form *ngSwitchCase="'members'" [formGroup]="membersFormGroup"></app-lab-members-form>
-  <app-lab-equipment-form *ngSwitchCase="'equipment'" [formGroup]="equipmentFormGroup"></app-lab-equipment-form>
+<div class="step-wrapper" [ngSwitch]="step | async">
+  <app-lab-equipments-form *ngSwitchCase="'equipments'" [formArray]="equipmentsFormArray"></app-lab-equipments-form>
   <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup"></app-lab-details-form>
-</ng-container>
+</div>
 
 <div>
-  <button type="button" routerLink="../../..">Anuluj</button>
+  <button type="button" routerLink="../..">Anuluj</button>
   <button type="button" (click)="saveLab()">Zapisz</button>
 </div>

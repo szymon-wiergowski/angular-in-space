@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LabEquipmentFormComponent } from './lab-equipment-form.component';
+import { LabEquipmentsFormComponent } from './lab-equipments-form.component';
 
 describe('LabEquipmentFormComponent', () => {
-  let component: LabEquipmentFormComponent;
-  let fixture: ComponentFixture<LabEquipmentFormComponent>;
+  let component: LabEquipmentsFormComponent;
+  let fixture: ComponentFixture<LabEquipmentsFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LabEquipmentFormComponent ]
+      declarations: [ LabEquipmentsFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LabEquipmentFormComponent);
+    fixture = TestBed.createComponent(LabEquipmentsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

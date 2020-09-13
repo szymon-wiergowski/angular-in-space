@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,21 +14,17 @@ import { LabFormService } from '../../services/lab-form/lab-form.service';
 })
 export class LabFormComponent implements OnInit {
   form: FormGroup;
-  step: Observable<keyof Lab> = this.route.params
+  step: Observable<keyof Lab> = this.route.queryParams
     .pipe(
-      map(params => params.step)
+      map(params => params.step ?? 'details')
     );
 
   get detailsFormGroup(): FormGroup {
     return this.form.get('details') as FormGroup;
   }
 
-  get membersFormGroup(): FormGroup {
-    return this.form.get('members') as FormGroup;
-  }
-
-  get equipmentFormGroup(): FormGroup {
-    return this.form.get('equipment') as FormGroup;
+  get equipmentsFormArray(): FormArray {
+    return this.form.get('equipments') as FormArray;
   }
 
   constructor(private route: ActivatedRoute,
@@ -47,7 +43,7 @@ export class LabFormComponent implements OnInit {
     }
 
     this.labService.saveLab(this.form.value).subscribe(
-      () => this.router.navigate(['../../..'], {relativeTo: this.route}),
+      () => this.router.navigate(['../..'], {relativeTo: this.route}),
       () => alert('Zapis nie powiódł się!')
     );
   }

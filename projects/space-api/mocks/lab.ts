@@ -1,4 +1,5 @@
-import { Lab, LabEquipmentTypes } from '../types';
+import { Lab } from '../types';
+import { EquipmentTypes } from '../types/equipments/equipment-types';
 
 export const mockedLabs: Lab[] = [
   {
@@ -6,37 +7,36 @@ export const mockedLabs: Lab[] = [
     details: {
       name: 'YaoNet Lab',
       autonomous: false,
+      enableTags: true,
       moonId: 20
     },
-    members: {
-      entries: [
-        {firstName: 'Yao', lastName: 'Ming'},
-        {firstName: 'Wanna', lastName: 'Lee'},
-        {firstName: 'Liu', lastName: 'Kang'}
-      ]
-    },
-    equipment: {
-      entries: [
-        {type: LabEquipmentTypes.Computer, model: 'Asus', os: 'Windows'},
-        {type: LabEquipmentTypes.Detector, name: 'Detektor promieniowania kosmicznego', productionYear: 2018}
-      ]
-    }
+    equipments: [
+      {name: 'Zenbook', tag: 'ZEN321', type: EquipmentTypes.Computer, producer: 'Asus', os: 'Windows'},
+      {name: 'Detektor promieniowania', tag: 'PROM567', type: EquipmentTypes.Detector, precision: 0.755, productionYear: 2018}
+    ]
   },
   {
     id: 2,
     details: {
       name: 'SpaceX Lab',
-      autonomous: true,
+      autonomous: false,
+      enableTags: false,
       moonId: 1
     },
-    members: {
-      entries: []
+    equipments: [
+      {name: 'Macbook Pro', tag: null, type: EquipmentTypes.Computer, producer: 'Apple', os: 'Macos'},
+      {name: 'Detektor podczerwieni', tag: null, type: EquipmentTypes.Detector, precision: 0.12, productionYear: 2020}
+    ]
+  },
+  {
+    id: 3,
+    details: {
+      name: 'Blueorigin Lab',
+      autonomous: true,
+      enableTags: false,
+      moonId: 15
     },
-    equipment: {
-      entries: [
-        {type: LabEquipmentTypes.Computer, model: 'Macbook Pro', os: 'Macos'},
-        {type: LabEquipmentTypes.Detector, name: 'Detektor audio-wizualny', productionYear: 2020}
-      ]
-    }
+    equipments: [
+    ]
   }
 ];

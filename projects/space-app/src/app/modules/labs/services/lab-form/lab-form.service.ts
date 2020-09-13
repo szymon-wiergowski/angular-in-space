@@ -1,31 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  Lab,
-  LabDetails,
-  LabEquipment, LabEquipmentComputer, LabEquipmentDetector,
-  LabEquipmentEntry,
-  LabEquipmentTypes,
-  LabMembers,
-  LabMembersEntry
-} from 'space-api/types';
-import { LabEquipmentFormBuilder } from '../../types/lab-equipment-form-builder';
+import { Lab, LabDetails, Equipment } from 'space-api/types';
+import { EQUIPMENT_CONFIG } from '../../../equipments/tokens/equipment-config';
+import { EquipmentConfig } from '../../../equipments/types/equipment-config';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LabFormService {
-  private readonly equipmentFormBuilderMap = new Map<LabEquipmentTypes, LabEquipmentFormBuilder>([
-    [LabEquipmentTypes.Detector, this.buildDetector.bind(this)],
-    [LabEquipmentTypes.Computer, this.buildComputer.bind(this)]
-  ]);
+  constructor(@Inject(EQUIPMENT_CONFIG) private config: EquipmentConfig) {}
 
   buildForm(lab: Lab): FormGroup {
     return new FormGroup({
       id: new FormControl(lab.id),
       details: this.buildDetails(lab.details),
-      members: this.buildMembersList(lab.members),
-      equipment: this.buildEquipmentList(lab.equipment)
+      equipments: this.buildEquipmentList(lab.equipments)
     });
   }
 
@@ -33,46 +20,26 @@ export class LabFormService {
     return new FormGroup({
       name: new FormControl(details.name, {validators: [Validators.required]}),
       moonId: new FormControl(details.moonId, {validators: [Validators.required]}),
-      autonomous: new FormControl(details.autonomous)
+      autonomous: new FormControl(details.autonomous),
+      enableTags: new FormControl(details.enableTags)
     });
   }
 
-  private buildMembersList(members: LabMembers): FormGroup {
-    return new FormGroup({
-      entries: new FormArray(members.entries.map(member => this.buildMember(member)))
-    });
+  private buildEquipmentList(equipments: Equipment[]): FormArray {
+    return new FormArray(equipments.map(item => this.buildEquipment(item)))
   }
 
-  private buildMember(member: LabMembersEntry): FormGroup {
+  private buildEquipment(equipment: Equipment): FormGroup {
     return new FormGroup({
-      firstName: new FormControl(member.firstName, {validators: Validators.required}),
-      lastName: new FormControl(member.lastName, {validators: Validators.required}),
-    });
+      ...this.getCommonEquipmentControls(equipment),
+      ...this.config.get(equipment.type).getSpecificControls(equipment)
+    })
   }
 
-  private buildEquipmentList(equipment: LabEquipment): FormGroup {
-    return new FormGroup({
-      entries: new FormArray(equipment.entries.map(item => this.buildEquipment(item)))
-    });
-  }
-
-  private buildEquipment(equipment: LabEquipmentEntry): FormGroup {
-    return this.equipmentFormBuilderMap.get(equipment.type)(equipment);
-  }
-
-  private buildComputer(equipment: LabEquipmentComputer): FormGroup {
-    return new FormGroup({
-      model: new FormControl(equipment.model, {validators: [Validators.required]}),
-      os: new FormControl(equipment.os, {validators: [Validators.required]}),
-      type: new FormControl(LabEquipmentTypes.Computer, {validators: [Validators.required]}),
-    });
-  }
-
-  private buildDetector(equipment: LabEquipmentDetector): FormGroup {
-    return new FormGroup({
+  private getCommonEquipmentControls(equipment: Equipment): {[name: string]: FormControl} {
+    return {
       name: new FormControl(equipment.name, {validators: [Validators.required]}),
-      productionYear: new FormControl(equipment.productionYear, {validators: [Validators.required]}),
-      type: new FormControl(LabEquipmentTypes.Detector, {validators: [Validators.required]}),
-    });
+      tag: new FormControl(equipment.tag, {validators: [Validators.required]})
+    };
   }
 }

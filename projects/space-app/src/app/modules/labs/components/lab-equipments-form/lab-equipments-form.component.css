@@ -1,0 +1,4 @@
+app-equipment-form:not(:last-of-type) {
+  display: block;
+  border-bottom: 1px solid black;
+}

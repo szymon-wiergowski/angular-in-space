@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-lab-members-form',
-  templateUrl: './lab-members-form.component.html',
-  styleUrls: ['./lab-members-form.component.css']
+  selector: 'app-equipment-form',
+  templateUrl: './equipment-form.component.html',
+  styleUrls: ['./equipment-form.component.css']
 })
-export class LabMembersFormComponent implements OnInit {
+export class EquipmentFormComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   constructor() { }
