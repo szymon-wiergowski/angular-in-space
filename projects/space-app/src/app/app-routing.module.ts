@@ -5,6 +5,7 @@ import { StartComponent } from './views/start/start.component';
 const routes: Routes = [
   {path: 'start', component: StartComponent},
   {path: 'launches', loadChildren: () => import('./modules/launches/launches.module').then(module => module.LaunchesModule)},
+  {path: 'labs', loadChildren: () => import('./modules/labs/labs.module').then(module => module.LabsModule)},
   {path: '**', redirectTo: 'start', pathMatch: 'full'}
 ];
 

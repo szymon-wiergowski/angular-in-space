@@ -1,0 +1,23 @@
+<ng-container [formGroup]="formGroup">
+  <div class="form-field">
+    <label for="name-control">Nazwa</label>
+    <input type="text" formControlName="name" id="name-control">
+  </div>
+
+  <div class="form-field">
+    <label for="autonomous-control">
+      <input type="checkbox" formControlName="autonomous" id="autonomous-control">
+      Labolatorium autonomiczne
+    </label>
+  </div>
+
+  <div class="form-field">
+    <label>Lokalizacja</label>
+    <select formControlName="moonId">
+      <option [ngValue]="1">Phobos</option>
+      <option [ngValue]="20">Księżyc</option>
+    </select>
+
+    <!-- TODO dodaj kontrolkę z wyborem księżyca wg planety -->
+  </div>
+</ng-container>

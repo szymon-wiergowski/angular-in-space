@@ -1,5 +1,7 @@
-import { mockedLaunches } from '../space-api/mocks';
+import { mockedLabs, mockedLaunches, mockedMoons } from '../space-api/mocks';
 
 export const db = {
-  launches: mockedLaunches
+  labs: mockedLabs,
+  launches: mockedLaunches,
+  moons: mockedMoons
 };
