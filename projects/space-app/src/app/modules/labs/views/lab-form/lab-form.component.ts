@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LabsService } from 'space-api/services';
 import { Lab } from 'space-api/types';
 import { LabFormService } from '../../services/lab-form/lab-form.service';
@@ -10,12 +10,10 @@ import { LabFormService } from '../../services/lab-form/lab-form.service';
 @Component({
   selector: 'app-lab-form',
   templateUrl: './lab-form.component.html',
-  styleUrls: ['./lab-form.component.css'],
-  providers: [LabFormService]
+  styleUrls: ['./lab-form.component.css']
 })
-export class LabFormComponent implements OnInit, OnDestroy {
+export class LabFormComponent implements OnInit {
   form: FormGroup;
-  destroy = new Subject<void>();
   step: Observable<keyof Lab> = this.route.params
     .pipe(
       map(params => params.step)
@@ -39,18 +37,11 @@ export class LabFormComponent implements OnInit, OnDestroy {
               private formService: LabFormService) { }
 
   ngOnInit(): void {
-    this.route.data
-      .pipe(takeUntil(this.destroy))
-      .subscribe(data => this.form = this.formService.buildForm(data.lab));
-  }
-
-  ngOnDestroy(): void {
-    this.destroy.next();
+    this.route.data.subscribe(data => this.form = this.formService.buildForm(data.lab));
   }
 
   saveLab(): void {
     if (this.form.invalid) {
-      console.log(this.form.value);
       alert('Popraw formularz!');
       return;
     }

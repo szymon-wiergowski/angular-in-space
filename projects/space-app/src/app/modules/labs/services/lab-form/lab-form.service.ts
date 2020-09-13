@@ -11,7 +11,9 @@ import {
 } from 'space-api/types';
 import { LabEquipmentFormBuilder } from '../../types/lab-equipment-form-builder';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LabFormService {
   private readonly equipmentFormBuilderMap = new Map<LabEquipmentTypes, LabEquipmentFormBuilder>([
     [LabEquipmentTypes.Detector, this.buildDetector.bind(this)],
