@@ -13,3 +13,9 @@
 .form-field label {
   display: block;
 }
+
+input, select, textarea {
+  &.ng-invalid {
+    border: 1px solid red;
+  }
+}
