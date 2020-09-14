@@ -19,7 +19,7 @@ export class EquipmentComputerModule {
       readComponent: null,
       formComponent: null,
       getSpecificControls: equipment => ({
-        producer: new FormControl(equipment.name, {validators: [Validators.required]}),
+        producer: new FormControl(equipment.producer, {validators: [Validators.required]}),
         os: new FormControl(equipment.os, {validators: [Validators.required]}),
         type: new FormControl(EquipmentTypes.Computer, {validators: [Validators.required]}),
       })
