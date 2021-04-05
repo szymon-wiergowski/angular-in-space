@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './modules/shared/shared.module';
 import { StartComponent } from './views/start/start.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { StartComponent } from './views/start/start.component';
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     HttpClientModule,
     AppRoutingModule
   ],
