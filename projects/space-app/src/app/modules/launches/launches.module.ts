@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { LaunchesRoutingModule } from './launches-routing.module';
 import { LaunchesComponent } from './views/launches/launches.component';
@@ -9,6 +10,7 @@ import { LaunchesComponent } from './views/launches/launches.component';
   declarations: [LaunchesComponent],
   imports: [
     CommonModule,
+    SharedModule,
     LaunchesRoutingModule
   ]
 })

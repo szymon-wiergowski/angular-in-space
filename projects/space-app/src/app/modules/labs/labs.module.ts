@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EquipmentsModule } from '../equipments/equipments.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { LabsRoutingModule } from './labs-routing.module';
 import { LabFormService } from './services/lab-form/lab-form.service';
@@ -25,6 +26,7 @@ import { LabEquipmentsFormComponent } from './components/lab-equipments-form/lab
   ],
   imports: [
     CommonModule,
+    SharedModule,
     EquipmentsModule,
     LabsRoutingModule,
     ReactiveFormsModule

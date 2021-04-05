@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { MartianCalendarRoutingModule } from './martian-calendar-routing.module';
 import { MartianCalendarComponent } from './martian-calendar.component';
@@ -9,6 +10,7 @@ import { MartianCalendarComponent } from './martian-calendar.component';
   declarations: [MartianCalendarComponent],
   imports: [
     CommonModule,
+    SharedModule,
     MartianCalendarRoutingModule
   ]
 })
