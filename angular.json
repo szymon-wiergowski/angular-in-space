@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "darian-system"
+            ],
             "outputPath": "dist/space-app",
             "index": "projects/space-app/src/index.html",
             "main": "projects/space-app/src/main.ts",
@@ -44,7 +47,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
