@@ -1,5 +1,4 @@
-import { Lab } from '../types';
-import { EquipmentTypes } from '../types/equipments/equipment-types';
+import { Lab, EquipmentTypes } from '../types';
 
 export const mockedLabs: Lab[] = [
   {

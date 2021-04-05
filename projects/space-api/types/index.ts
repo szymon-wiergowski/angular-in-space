@@ -1,3 +1,4 @@
+export * from './app-config';
 export * from './lab';
 export * from './lab-details';
 export * from './equipments';
