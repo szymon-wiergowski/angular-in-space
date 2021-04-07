@@ -1,3 +1,4 @@
+// tslint:disable:component-selector
 import { Component, Input } from '@angular/core';
 import { Lab } from 'space-api/types';
 

@@ -1,12 +1,20 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Lab, LabDetails, Equipment } from 'space-api/types';
-import { EQUIPMENT_CONFIG } from '../../../equipments/tokens/equipment-config';
-import { EquipmentConfig } from '../../../equipments/types/equipment-config';
+import { Lab, LabDetails, Equipment, EquipmentTypes } from 'space-api/types';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class LabFormService {
-  constructor(@Inject(EQUIPMENT_CONFIG) private config: EquipmentConfig) {}
+  readonly specificControls = {
+    [EquipmentTypes.Computer]: equipment => ({
+      producer: new FormControl(equipment.producer, {validators: [Validators.required]}),
+      os: new FormControl(equipment.os, {validators: [Validators.required]}),
+    }),
+    [EquipmentTypes.Detector]: equipment => ({
+      precision: new FormControl(equipment.precision, {validators: [Validators.required]}),
+      productionYear: new FormControl(equipment.productionYear, {validators: [Validators.required]}),
+    }),
+    // add new types here
+  };
 
   buildForm(lab: Lab): FormGroup {
     return new FormGroup({
@@ -26,20 +34,15 @@ export class LabFormService {
   }
 
   private buildEquipmentList(equipments: Equipment[]): FormArray {
-    return new FormArray(equipments.map(item => this.buildEquipment(item)))
+    return new FormArray(equipments.map(item => this.buildEquipment(item)));
   }
 
   private buildEquipment(equipment: Equipment): FormGroup {
     return new FormGroup({
-      ...this.getCommonEquipmentControls(equipment),
-      ...this.config.get(equipment.type).getSpecificControls(equipment)
-    })
-  }
-
-  private getCommonEquipmentControls(equipment: Equipment): {[name: string]: FormControl} {
-    return {
       name: new FormControl(equipment.name, {validators: [Validators.required]}),
-      tag: new FormControl(equipment.tag, {validators: [Validators.required]})
-    };
+      tag: new FormControl(equipment.tag, {validators: [Validators.required]}),
+      type: new FormControl(equipment.type, {validators: [Validators.required]}),
+      ...this.specificControls[equipment.type](equipment)
+    });
   }
 }
