@@ -6,12 +6,12 @@ import { Lab, LabDetails, Equipment, EquipmentTypes } from 'space-api/types';
 export class LabFormService {
   readonly specificControls = {
     [EquipmentTypes.Computer]: equipment => ({
-      producer: new FormControl(equipment.producer, {validators: [Validators.required]}),
-      os: new FormControl(equipment.os, {validators: [Validators.required]}),
+      producer: new FormControl(equipment.producer),
+      os: new FormControl(equipment.os),
     }),
     [EquipmentTypes.Detector]: equipment => ({
-      precision: new FormControl(equipment.precision, {validators: [Validators.required]}),
-      productionYear: new FormControl(equipment.productionYear, {validators: [Validators.required]}),
+      precision: new FormControl(equipment.precision),
+      productionYear: new FormControl(equipment.productionYear),
     }),
     // add new types here
   };
