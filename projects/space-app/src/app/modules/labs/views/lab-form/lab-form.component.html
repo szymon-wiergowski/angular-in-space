@@ -6,7 +6,10 @@
 </div>
 
 <div class="step-wrapper" [ngSwitch]="step | async">
-  <app-lab-equipments-form *ngSwitchCase="'equipments'" [formArray]="equipmentsFormArray"></app-lab-equipments-form>
+  <app-lab-equipments-form *ngSwitchCase="'equipments'" [formArray]="equipmentsFormArray"
+                           (equipmentAdd)="addEquipment($event)"
+                           (equipmentRemove)="removeEquipment($event)">
+  </app-lab-equipments-form>
   <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup"></app-lab-details-form>
 </div>
 

@@ -16,12 +16,27 @@ export class LabFormService {
     // add new types here
   };
 
+  formToLab(form: FormGroup): Lab {
+    return {equipments: [], ...form.value};
+  }
+
+  addEquipment(form: FormGroup, type: EquipmentTypes): void {
+    // TODO zaimplementuj
+  }
+
+  removeEquipment(form: FormGroup, index: number): void {
+    // TODO zaimplementuj
+  }
+
   buildForm(lab: Lab): FormGroup {
-    return new FormGroup({
+    const form = new FormGroup({
       id: new FormControl(lab.id),
       details: this.buildDetails(lab.details),
       equipments: this.buildEquipmentList(lab.equipments)
     });
+    this.observeEnableTags(form);
+    this.observeAutonomous(form);
+    return form;
   }
 
   private buildDetails(details: LabDetails): FormGroup {
@@ -44,5 +59,17 @@ export class LabFormService {
       type: new FormControl(equipment.type, {validators: [Validators.required]}),
       ...this.specificControls[equipment.type](equipment)
     });
+  }
+
+  private observeAutonomous(form: FormGroup): void {
+    // TODO zaimplementuj
+  }
+
+  private observeEnableTags(form: FormGroup): void {
+    // TODO zaimplementuj
+  }
+
+  private setEquipmentValidators(equipmentFormGroup: FormGroup, enableTags: boolean): void {
+    // TODO zaimplementuj
   }
 }

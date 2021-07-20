@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LabsService } from 'space-api/services';
-import { Lab } from 'space-api/types';
+import { EquipmentTypes, Lab } from 'space-api/types';
 import { LabFormService } from '../../services/lab-form/lab-form.service';
 
 @Component({
@@ -42,9 +42,18 @@ export class LabFormComponent implements OnInit {
       return;
     }
 
-    this.labService.saveLab(this.form.value).subscribe(
+    const lab = this.formService.formToLab(this.form);
+    this.labService.saveLab(lab).subscribe(
       () => this.router.navigate(['../..'], {relativeTo: this.route}),
       () => alert('Zapis nie powiódł się!')
     );
+  }
+
+  addEquipment(type: EquipmentTypes): void {
+    this.formService.addEquipment(this.form, type);
+  }
+
+  removeEquipment(index: number): void {
+    this.formService.removeEquipment(this.form, index);
   }
 }
