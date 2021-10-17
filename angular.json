@@ -21,7 +21,6 @@
             "main": "projects/space-app/src/main.ts",
             "polyfills": "projects/space-app/src/polyfills.ts",
             "tsConfig": "projects/space-app/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/space-app/src/favicon.ico",
               "projects/space-app/src/assets"
@@ -34,7 +33,13 @@
             "styles": [
               "projects/space-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -64,7 +69,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -105,31 +111,6 @@
             ],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/space-app/tsconfig.app.json",
-              "projects/space-app/tsconfig.spec.json",
-              "projects/space-app/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/space-app/e2e/protractor.conf.js",
-            "devServerTarget": "space-app:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "space-app:serve:production"
-            }
-          }
         }
       }
     }
@@ -137,7 +118,7 @@
   "defaultProject": "space-app",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "style": "scss"
     }
   }
 }
