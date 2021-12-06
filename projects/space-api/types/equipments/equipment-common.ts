@@ -1,4 +1,4 @@
 export interface EquipmentCommon {
   name: string;
-  tag: string;
+  tag: string | null;
 }

@@ -9,7 +9,7 @@ import { EquipmentTypes } from 'space-api/types';
   styleUrls: ['./lab-equipments-form.component.css']
 })
 export class LabEquipmentsFormComponent implements OnInit {
-  @Input() formArray: FormArray;
+  @Input() formArray!: FormArray;
   @Output() equipmentAdd = new EventEmitter<EquipmentTypes>();
   @Output() equipmentRemove = new EventEmitter<number>();
   EquipmentTypes = EquipmentTypes;

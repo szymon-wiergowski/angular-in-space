@@ -1,16 +1,16 @@
 export interface Launch {
   id: number;
-  missionPatch: string;
+  missionPatch: string | null;
   missionName: string;
   rocketName: string;
-  success: boolean;
+  success: boolean | null;
   launchDate: string;
-  launchSiteName: string;
-  details: string;
+  launchSiteName: string | null;
+  details: string | null;
   links: {
-    videoLink: string;
-    presskitLink: string;
-    articleLink: string;
-    wikipediaLink: string;
+    videoLink: string | null;
+    presskitLink: string | null;
+    articleLink: string | null;
+    wikipediaLink: string | null;
   };
 }

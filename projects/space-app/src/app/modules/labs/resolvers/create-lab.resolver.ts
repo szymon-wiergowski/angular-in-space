@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Lab } from 'space-api/types';
+import { NewLab } from 'space-api/types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CreateLabResolver implements Resolve<Lab> {
-  resolve(route: ActivatedRouteSnapshot): Lab {
+export class CreateLabResolver implements Resolve<NewLab> {
+  resolve(route: ActivatedRouteSnapshot): NewLab {
     return {
-      id: null,
       details: {name: '', moonId: null, autonomous: false, enableTags: false},
       equipments: [],
     };

@@ -9,7 +9,7 @@ import { AppConfig } from '../../types';
   providedIn: 'root'
 })
 export class AppConfigService {
-  currentAppConfig: AppConfig = null;
+  currentAppConfig: AppConfig | null = null;
 
   constructor(private http: HttpClient, @Inject(API_URL) private apiUrl: string) {}
 

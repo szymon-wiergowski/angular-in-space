@@ -11,6 +11,6 @@ export class EditLabResolver implements Resolve<Lab> {
   constructor(private labsService: LabsService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Lab> {
-    return this.labsService.getLab(+route.params.id);
+    return this.labsService.getLab(+route.params['id']);
   }
 }

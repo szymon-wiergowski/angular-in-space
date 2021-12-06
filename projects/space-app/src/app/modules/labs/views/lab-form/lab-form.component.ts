@@ -13,10 +13,10 @@ import { LabFormService } from '../../services/lab-form/lab-form.service';
   styleUrls: ['./lab-form.component.css']
 })
 export class LabFormComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
   step: Observable<keyof Lab> = this.route.queryParams
     .pipe(
-      map(params => params.step ?? 'details')
+      map(params => params['step'] ?? 'details')
     );
 
   get detailsFormGroup(): FormGroup {
@@ -33,7 +33,7 @@ export class LabFormComponent implements OnInit {
               private formService: LabFormService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => this.form = this.formService.buildForm(data.lab));
+    this.route.data.subscribe(data => this.form = this.formService.buildForm(data['lab']));
   }
 
   saveLab(): void {

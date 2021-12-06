@@ -5,11 +5,11 @@ import { Lab, LabDetails, Equipment, EquipmentTypes } from 'space-api/types';
 @Injectable({providedIn: 'root'})
 export class LabFormService {
   readonly specificControls = {
-    [EquipmentTypes.Computer]: equipment => ({
+    [EquipmentTypes.Computer]: (equipment: any) => ({
       producer: new FormControl(equipment.producer),
       os: new FormControl(equipment.os),
     }),
-    [EquipmentTypes.Detector]: equipment => ({
+    [EquipmentTypes.Detector]: (equipment: any) => ({
       precision: new FormControl(equipment.precision),
       productionYear: new FormControl(equipment.productionYear),
     }),

@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./lab-details-form.component.css']
 })
 export class LabDetailsFormComponent implements OnInit {
-  @Input() formGroup: FormGroup;
+  @Input() formGroup!: FormGroup;
 
   constructor() { }
 

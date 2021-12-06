@@ -8,7 +8,7 @@ import { Lab } from 'space-api/types';
 })
 export class LabsListComponent {
   @Output() labRemove = new EventEmitter<Lab>();
-  @Input() labs: Lab[];
+  @Input() labs!: Lab[];
 
   trackByFn(index: number, lab: Lab): number {
     return lab.id;

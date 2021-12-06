@@ -5,8 +5,8 @@ import { routes } from './routes';
 
 // setup config
 const argv = minimist(process.argv.slice(2));
-const host = argv.host || 'localhost';
-const port = argv.port || '4510';
+const host = argv['host'] || 'localhost';
+const port = argv['port'] || '4510';
 
 // create server
 const server = create();

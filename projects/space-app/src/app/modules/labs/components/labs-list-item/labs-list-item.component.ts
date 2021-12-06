@@ -8,5 +8,5 @@ import { Lab } from 'space-api/types';
   styleUrls: ['./labs-list-item.component.css']
 })
 export class LabsListItemComponent {
-  @Input() lab: Lab;
+  @Input() lab!: Lab;
 }

@@ -6,3 +6,5 @@ export interface Lab {
   details: LabDetails;
   equipments: Equipment[];
 }
+
+export type NewLab = Omit<Lab, 'id'>;
