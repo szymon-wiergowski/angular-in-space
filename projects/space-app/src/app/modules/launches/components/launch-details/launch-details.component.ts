@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-launch-details',
   templateUrl: './launch-details.component.html',
-  styleUrls: ['./launch-details.component.scss']
+  styleUrls: ['./launch-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LaunchDetailsComponent implements OnInit {
   @Input() details: string | null = null;
@@ -14,6 +15,10 @@ export class LaunchDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  get formattedDetails(): string {
+    return this.details?.split('').map(char => char.toUpperCase()).join('') ?? '';
   }
 
   toggleEditor(): void {

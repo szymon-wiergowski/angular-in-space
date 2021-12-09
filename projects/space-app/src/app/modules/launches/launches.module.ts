@@ -9,6 +9,8 @@ import { LaunchesListItemComponent } from './components/launches-list-item/launc
 import { LaunchDetailsComponent } from './components/launch-details/launch-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LaunchesSearchComponent } from './components/launches-search/launches-search.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { LaunchesSearchComponent } from './components/launches-search/launches-s
     CommonModule,
     SharedModule,
     LaunchesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
   ]
 })
 export class LaunchesModule { }
