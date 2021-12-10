@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeatureEnabledGuard } from './services/feature-enabled.guard';
+import { BrowserComponent } from './views/browser/browser.component';
 import { ForbiddenComponent } from './views/forbidden/forbidden.component';
 import { StartComponent } from './views/start/start.component';
 
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'start',
     pathMatch: 'full'
+  },
+  {
+    path: 'url/:url',
+    outlet: 'browser',
+    component: BrowserComponent
   }
 ];
 
