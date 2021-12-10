@@ -8,8 +8,8 @@
 <div class="step-wrapper" [ngSwitch]="step | async">
   <ng-container *ngSwitchCase="'equipments'">
     <app-lab-equipments-form *ngIf="equipmentsFormArray.enabled; else equipmentsDisabled" [formArray]="equipmentsFormArray"
-                             (equipmentAdd)="addEquipment($event)"
-                             (equipmentRemove)="removeEquipment($event)">
+      (equipmentAdd)="addEquipment($event)"
+      (equipmentRemove)="removeEquipment($event)">
     </app-lab-equipments-form>
     <ng-template #equipmentsDisabled>
       <p>Nie można zarządzać wyposażeniem gdy laboratorium jest autonomiczne.</p>
