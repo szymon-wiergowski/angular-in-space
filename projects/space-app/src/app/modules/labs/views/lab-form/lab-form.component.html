@@ -6,10 +6,15 @@
 </div>
 
 <div class="step-wrapper" [ngSwitch]="step | async">
-  <app-lab-equipments-form *ngSwitchCase="'equipments'" [formArray]="equipmentsFormArray"
-                           (equipmentAdd)="addEquipment($event)"
-                           (equipmentRemove)="removeEquipment($event)">
-  </app-lab-equipments-form>
+  <ng-container *ngSwitchCase="'equipments'">
+    <app-lab-equipments-form *ngIf="equipmentsFormArray.enabled; else equipmentsDisabled" [formArray]="equipmentsFormArray"
+                             (equipmentAdd)="addEquipment($event)"
+                             (equipmentRemove)="removeEquipment($event)">
+    </app-lab-equipments-form>
+    <ng-template #equipmentsDisabled>
+      <p>Nie można zarządzać wyposażeniem gdy laboratorium jest autonomiczne.</p>
+    </ng-template>
+  </ng-container>
   <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup" [moons]="(moons | async) ?? []"></app-lab-details-form>
 </div>
 

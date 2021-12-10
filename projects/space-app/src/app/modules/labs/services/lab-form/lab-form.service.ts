@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { merge, of } from 'rxjs';
 import { Lab, LabDetails, Equipment, EquipmentTypes } from 'space-api/types';
 
 @Injectable({providedIn: 'root'})
@@ -21,11 +22,16 @@ export class LabFormService {
   }
 
   addEquipment(form: FormGroup, type: EquipmentTypes): void {
-    // TODO zaimplementuj
+    const formArray = form.get('equipments') as FormArray;
+    const enableTags = form.get('details.enableTags')!.value;
+    const formGroup = this.buildEquipment({type, name: '', tag: ''} as Equipment);
+    this.setEquipmentValidators(formGroup, enableTags);
+    formArray.push(formGroup);
   }
 
   removeEquipment(form: FormGroup, index: number): void {
-    // TODO zaimplementuj
+    const formArray = form.get('equipments') as FormArray;
+    formArray.removeAt(index);
   }
 
   buildForm(lab: Lab): FormGroup {
@@ -62,14 +68,33 @@ export class LabFormService {
   }
 
   private observeAutonomous(form: FormGroup): void {
-    // TODO zaimplementuj
+    const control = form.get('details.autonomous')!;
+    merge(of(control.value), control.valueChanges)
+      .subscribe((autonomous: boolean) => {
+        if (autonomous) {
+          form.get('equipments')!.disable();
+        } else {
+          form.get('equipments')!.enable();
+        }
+      });
   }
 
   private observeEnableTags(form: FormGroup): void {
-    // TODO zaimplementuj
+    const control = form.get('details.enableTags')!;
+    merge(of(control.value), control.valueChanges)
+      .subscribe((enableTags: boolean) => {
+        const equipmentFormGroups = (form.get('equipments') as FormArray).controls as FormGroup[];
+        equipmentFormGroups.forEach(formGroup => this.setEquipmentValidators(formGroup, enableTags));
+      });
   }
 
   private setEquipmentValidators(equipmentFormGroup: FormGroup, enableTags: boolean): void {
-    // TODO zaimplementuj
+    const tagControl = equipmentFormGroup.get('tag')!;
+    if (enableTags) {
+      tagControl.addValidators([Validators.required]);
+    } else {
+      tagControl.removeValidators([Validators.required]);
+    }
+    tagControl.updateValueAndValidity();
   }
 }
