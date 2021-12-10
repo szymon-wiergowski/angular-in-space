@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Moon } from 'space-api/types';
 
 @Component({
   selector: 'app-lab-details-form',
@@ -8,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class LabDetailsFormComponent implements OnInit {
   @Input() formGroup!: FormGroup;
+  @Input() moons!: Moon[];
 
   constructor() { }
 

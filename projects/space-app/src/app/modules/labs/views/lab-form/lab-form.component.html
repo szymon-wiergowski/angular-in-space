@@ -10,7 +10,7 @@
                            (equipmentAdd)="addEquipment($event)"
                            (equipmentRemove)="removeEquipment($event)">
   </app-lab-equipments-form>
-  <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup"></app-lab-details-form>
+  <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup" [moons]="(moons | async) ?? []"></app-lab-details-form>
 </div>
 
 <div>

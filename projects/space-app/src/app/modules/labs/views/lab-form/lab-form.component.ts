@@ -3,7 +3,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LabsService } from 'space-api/services';
+import { LabsService, MoonsService } from 'space-api/services';
 import { EquipmentTypes, Lab } from 'space-api/types';
 import { LabFormService } from '../../services/lab-form/lab-form.service';
 
@@ -14,6 +14,7 @@ import { LabFormService } from '../../services/lab-form/lab-form.service';
 })
 export class LabFormComponent implements OnInit {
   form!: FormGroup;
+  moons = this.moonsService.getMoons();
   step: Observable<keyof Lab> = this.route.queryParams
     .pipe(
       map(params => params['step'] ?? 'details')
@@ -30,7 +31,7 @@ export class LabFormComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private labService: LabsService,
-              private formService: LabFormService) { }
+              private formService: LabFormService, private moonsService: MoonsService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => this.form = this.formService.buildForm(data['lab']));

@@ -1,0 +1,6 @@
+<select [formControl]="planetControl" (blur)="onTouch()">
+  <option *ngFor="let planet of planetOptions" [value]="planet">{{planet}}</option>
+</select>
+<select [formControl]="moonControl" *ngIf="planetControl.value" (blur)="onTouch()">
+  <option *ngFor="let moon of moonOptions" [ngValue]="moon.id">{{moon.name}}</option>
+</select>
