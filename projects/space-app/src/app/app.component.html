@@ -14,4 +14,14 @@
  Trwa przetwarzanie danych...
 </div>
 
+<div class="update" *ngIf="updateAvailable | async">
+  Dostępna aktualizacja aplikacji
+  <button (click)="activateUpdate()">Aktywuj</button>
+</div>
+
+<div class="error" *ngIf="unrecoverableError | async">
+  Wystąpił błąd krytyczny
+  <button (click)="reloadApp()">Odśwież stronę</button>
+</div>
+
 <a2s-comm></a2s-comm>

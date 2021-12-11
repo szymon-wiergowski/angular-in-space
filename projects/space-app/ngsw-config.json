@@ -5,10 +5,10 @@
       {
         "name": "httpResponses",
         "urls": [
-          "**/launches*",
-          "**/labs/*",
-          "**/labs",
-          "**/moons"
+          "**http://localhost:4550/launches*",
+          "**http://localhost:4550/labs/*",
+          "**http://localhost:4550/labs",
+          "**http://localhost:4550/moons"
         ],
         "cacheConfig": {
           "maxSize": 50,
