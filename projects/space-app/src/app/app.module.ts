@@ -11,15 +11,23 @@ import { SharedModule } from './modules/shared/shared.module';
 import { StartComponent } from './views/start/start.component';
 import { SharedLibModule } from 'shared-lib';
 import { AppConfigService } from 'space-api/services';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap, throwError } from 'rxjs';
 import { AppConfig } from 'space-api/types';
 import { ForbiddenComponent } from './views/forbidden/forbidden.component';
 import { BrowserComponent } from './views/browser/browser.component';
 import { BusyInterceptor } from './services/busy.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 function appConfigInitializer(appConfigService: AppConfigService): () => Observable<AppConfig> {
-  return () => appConfigService.getAppConfig();
+  return () => appConfigService.getAppConfig().pipe(
+    tap(config => localStorage.setItem('app-config', JSON.stringify(config))),
+    catchError(error => {
+      appConfigService.currentAppConfig = JSON.parse(localStorage.getItem('app-config') ?? 'null');
+      return appConfigService.currentAppConfig ? of(appConfigService.currentAppConfig) : throwError(error);
+     })
+    );;
 }
+
 
 @NgModule({
   declarations: [
@@ -34,7 +42,13 @@ function appConfigInitializer(appConfigService: AppConfigService): () => Observa
     SharedModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedLibModule
+    SharedLibModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     {provide: API_URL, useValue: environment.apiUrl}, {

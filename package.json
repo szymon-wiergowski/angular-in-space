@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~13.0.3",
     "@angular/platform-browser-dynamic": "~13.0.3",
     "@angular/router": "~13.0.3",
+    "@angular/service-worker": "~13.0.3",
     "a2s-comm": "^13.0.0",
     "darian-system": "^1.1.2",
     "rxjs": "~7.4.0",
