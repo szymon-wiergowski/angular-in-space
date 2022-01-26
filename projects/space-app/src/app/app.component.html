@@ -1,0 +1,27 @@
+<div class="header" *ngIf="navigationVisible | async">
+  <a routerLink="/start" *appIfFeatureEnabled="'start'">Space App</a>
+  <a routerLink="/launches" *appIfFeatureEnabled="'launches'">Loty kosmiczne</a>
+  <a routerLink="/labs" *appIfFeatureEnabled="'labs'">Laboratoria</a>
+  <a routerLink="/martian-calendar" *appIfFeatureEnabled="'martianCalendar'">Czas marsjański</a>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<small>{{appVersion}}</small>
+<router-outlet name="browser"></router-outlet>
+
+<div class="loading" *ngIf="busy | async">
+ Trwa przetwarzanie danych...
+</div>
+
+<div class="update" *ngIf="updateAvailable | async">
+  Dostępna aktualizacja aplikacji
+  <button (click)="activateUpdate()">Aktywuj</button>
+</div>
+
+<div class="error" *ngIf="unrecoverableError | async">
+  Wystąpił błąd krytyczny
+  <button (click)="reloadApp()">Odśwież stronę</button>
+</div>
+
+<a2s-comm></a2s-comm>

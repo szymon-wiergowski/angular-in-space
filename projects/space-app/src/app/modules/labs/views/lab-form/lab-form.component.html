@@ -1,0 +1,24 @@
+<h2>Wprowadzanie laboratorium</h2>
+
+<div>
+  <button type="button" routerLink="." [queryParams]="{step: 'details'}" routerLinkActive="active">Szczegóły</button>
+  <button type="button" routerLink="." [queryParams]="{step: 'equipments'}" routerLinkActive="active">Wyposażenie</button>
+</div>
+
+<div class="step-wrapper" [ngSwitch]="step | async">
+  <ng-container *ngSwitchCase="'equipments'">
+    <app-lab-equipments-form *ngIf="equipmentsFormArray.enabled; else equipmentsDisabled" [formArray]="equipmentsFormArray"
+      (equipmentAdd)="addEquipment($event)"
+      (equipmentRemove)="removeEquipment($event)">
+    </app-lab-equipments-form>
+    <ng-template #equipmentsDisabled>
+      <p>Nie można zarządzać wyposażeniem gdy laboratorium jest autonomiczne.</p>
+    </ng-template>
+  </ng-container>
+  <app-lab-details-form *ngSwitchDefault [formGroup]="detailsFormGroup" [moons]="(moons | async) ?? []"></app-lab-details-form>
+</div>
+
+<div>
+  <button type="button" routerLink="../..">Anuluj</button>
+  <button type="button" (click)="saveLab()">Zapisz</button>
+</div>

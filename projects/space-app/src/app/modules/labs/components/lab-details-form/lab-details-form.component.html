@@ -1,0 +1,29 @@
+<ng-container [formGroup]="formGroup">
+  <div>
+    <div class="form-field inline">
+      <label>Nazwa</label>
+      <input type="text" formControlName="name">
+    </div>
+
+    <div class="form-field inline">
+      <label>Lokalizacja</label>
+      <app-lab-moon-id-selector formControlName="moonId" [moons]="moons"></app-lab-moon-id-selector>
+    </div>
+  </div>
+
+  <div>
+    <div class="form-field inline">
+      <label>
+        <input type="checkbox" formControlName="autonomous">
+        labolatorium autonomiczne
+      </label>
+    </div>
+
+    <div class="form-field inline">
+      <label>
+        <input type="checkbox" formControlName="enableTags">
+        włącz tagowanie
+      </label>
+    </div>
+  </div>
+</ng-container>
